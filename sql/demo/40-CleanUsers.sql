@@ -1,5 +1,4 @@
 use openeyes;
-delete from audit;
 
 DELETE FROM authassignment WHERE userid NOT IN (1, 2, 3, 6, 7, 11, 6006, 453, 833, 6652);
 
