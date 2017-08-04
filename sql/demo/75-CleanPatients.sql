@@ -120,6 +120,8 @@ UPDATE `contact` SET `title`='Ms', `first_name`='Enid', `last_name`='Blyton' WHE
 UPDATE `contact` SET `title`='Mrs', `first_name`='Julie', `last_name`='Andrews' WHERE `id`='9184';
 UPDATE `contact` SET `title`='Mr', `first_name`='Enoch', `last_name`='Powell' WHERE `id`='9185';
 UPDATE `contact` SET `title`='Mr', `first_name`='Alexanger Graham', `last_name`='Bell' WHERE `id`='9186';
+UPDATE `contact` SET `title`='Mr', `first_name`='Barry', `last_name`='White' WHERE `id`='346308';
+
 
 /* Adjust DOB for Paeds, etc */
 UPDATE `openeyes`.`patient` SET `dob`='2010-02-24' WHERE `id`='19061';

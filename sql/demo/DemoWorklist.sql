@@ -31,7 +31,8 @@ Insert INTO openeyes.worklist_patient (worklist_id, patient_id) SELECT 1, id fro
 	'1009412',
 	'1009411',
 	'1007942',
-	'1009402'
+	'1009402',
+	'1911438'
     );
 
 /* Add MR Patients */
@@ -84,6 +85,7 @@ UPDATE `openeyes`.`worklist_patient` SET `when`='0000-00-00 09:00:15' WHERE `id`
 UPDATE `openeyes`.`worklist_patient` SET `when`='0000-00-00 09:00:20' WHERE `id`='4';
 UPDATE `openeyes`.`worklist_patient` SET `when`='0000-00-00 09:45:00' WHERE `id`='1';
 UPDATE `openeyes`.`worklist_patient` SET `when`='0000-00-00 10:15:10' WHERE `id`='2';
+UPDATE `openeyes`.`worklist_patient` SET `when`='0000-00-00 10:30:10' WHERE `id`='8';
 -- Glaucoma
 UPDATE `openeyes`.`worklist_patient` SET `when`='0000-00-00 09:00:00' WHERE `id`='24';
 UPDATE `openeyes`.`worklist_patient` SET `when`='0000-00-00 09:15:00' WHERE `id`='25';
