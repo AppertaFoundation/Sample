@@ -3,45 +3,54 @@ use openeyes;
 /***********************
 * Create Genetics users
 ************************/
+
+-- Create temp list of all created users (used later in this script)
+CREATE TEMPORARY TABLE IF NOT EXISTS temp_users(`id` int);
+
 -- Add contacts
 INSERT INTO `contact` (`primary_phone`, `title`, `first_name`, `last_name`) VALUES ('01234567890', 'Mr', 'Genetics', 'Clinical');
+SET @GenclCnt = LAST_INSERT_ID();
 INSERT INTO `contact` (`title`, `first_name`, `last_name`) VALUES ('Mr', 'Genetics', 'Administrator');
+SET @GenadCnt = LAST_INSERT_ID();
 INSERT INTO `contact` (`title`, `first_name`, `last_name`) VALUES ('Mr', 'Genetics', 'Lab Tech');
+SET @GenlabCnt = LAST_INSERT_ID();
 INSERT INTO `contact` (`title`, `first_name`, `last_name`) VALUES ('Mr', 'Genetics', 'User');
+SET @GenUsCnt = LAST_INSERT_ID();
 
 -- Create Users
 INSERT INTO `user` (`username`, `first_name`, `last_name`, `active`, `global_firm_rights`, `role`, `password`, `salt`, `is_clinical`, `contact_id`, `last_firm_id`)
-SELECT 'geneticsclinical', 'Genetics', 'Clinical', '1', '1', '', 'b0c6e884403a5c05bd634943df1b9a08', '7jMG6UQ2dY', '1', (SELECT id from contact c WHERE c.first_name = 'Genetics' AND c.last_name = 'Clinical'), '297';
+SELECT 'geneticsclinical', 'Genetics', 'Clinical', '1', '1', '', 'b0c6e884403a5c05bd634943df1b9a08', '7jMG6UQ2dY', '1', @GenclCnt, '297';
+SET @GenclUsr = LAST_INSERT_ID();
+INSERT INTO temp_users (`id`) VALUES (@GenclUsr);
 
 INSERT INTO `user` (`username`, `first_name`, `last_name`, `active`, `global_firm_rights`, `role`, `password`, `salt`, `is_clinical`, `contact_id`, `last_firm_id`)
-SELECT 'geneticsadmin', 'Genetics', 'Administrator', '1', '1', '', 'b0c6e884403a5c05bd634943df1b9a08', '7jMG6UQ2dY', '1', (SELECT id from contact c WHERE c.first_name = 'Genetics' AND c.last_name = 'Administrator'), '297';
+SELECT 'geneticsadmin', 'Genetics', 'Administrator', '1', '1', '', 'b0c6e884403a5c05bd634943df1b9a08', '7jMG6UQ2dY', '1', @GenadCnt, '297';
+SET @GenadUsr = LAST_INSERT_ID();
+INSERT INTO temp_users (`id`) VALUES (@GenadUsr);
 
 INSERT INTO `user` (`username`, `first_name`, `last_name`, `active`, `global_firm_rights`, `role`, `password`, `salt`, `is_clinical`, `contact_id`, `last_firm_id`)
-SELECT 'geneticstech', 'Genetics', 'Lab Tech', '1', '1', '', 'b0c6e884403a5c05bd634943df1b9a08', '7jMG6UQ2dY', '1', (SELECT id from contact c WHERE c.first_name = 'Genetics' AND c.last_name = 'Lab Tech'), '297';
+SELECT 'geneticstech', 'Genetics', 'Lab Tech', '1', '1', '', 'b0c6e884403a5c05bd634943df1b9a08', '7jMG6UQ2dY', '1', @GenlabCnt, '297';
+SET @GenlabUsr = LAST_INSERT_ID();
+INSERT INTO temp_users (`id`) VALUES (@GenlabUsr);
 
 INSERT INTO `user` (`username`, `first_name`, `last_name`, `active`, `global_firm_rights`, `role`, `password`, `salt`, `is_clinical`, `contact_id`, `last_firm_id`)
-SELECT 'geneticsuser', 'Genetics', 'User', '1', '1', '', 'b0c6e884403a5c05bd634943df1b9a08', '7jMG6UQ2dY', '1', (SELECT id from contact c WHERE c.first_name = 'Genetics' AND c.last_name = 'User'), '297';
+SELECT 'geneticsuser', 'Genetics', 'User', '1', '1', '', 'b0c6e884403a5c05bd634943df1b9a08', '7jMG6UQ2dY', '1', @GenUsCnt, '297';
+SET @GenUsUsr = LAST_INSERT_ID();
+INSERT INTO temp_users (`id`) VALUES (@GenUsUsr);
 
 -- Set permissions
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Genetics Clinical', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Clinical');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'User', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Clinical');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'View clinical', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Clinical');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Edit', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Clinical');
+INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Genetics Clinical', @GenclUsr;
+INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Genetics Admin', @GenadUsr;
+INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Genetics Laboratory Technician', @GenlabUsr;
+INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Genetics User', @GenUsUsr;
 
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Genetics Admin', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Administrator');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'User', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Administrator');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'View clinical', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Administrator');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Edit', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Administrator');
+-- Set basic login permissions for all new users
+INSERT INTO `authassignment` (`itemname`, `userid`) SELECT 'User', u.id FROM user u INNER JOIN temp_users t WHERE u.id = t.id;
+INSERT INTO `authassignment` (`itemname`, `userid`) SELECT 'View clinical', u.id FROM user u INNER JOIN temp_users t WHERE u.id = t.id;
+INSERT INTO `authassignment` (`itemname`, `userid`) SELECT 'Edit', u.id FROM user u INNER JOIN temp_users t WHERE u.id = t.id;
 
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Genetics Laboratory Technician', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Lab Tech');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'User', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Lab Tech');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'View clinical', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Lab Tech');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Edit', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='Lab Tech');
+DROP TABLE temp_users;
 
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Genetics User', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='User');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'User', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='User');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'View clinical', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='User');
-INSERT INTO `authassignment` (`itemname`, `userid`) SELECT'Edit', (SELECT id FROM user WHERE first_name = 'Genetics' AND last_name='User');
 
 -- Create study
 INSERT INTO `genetics_study` (`name`, `criteria`) VALUES ('Demo Study', 'Anybody can join this study. It is for demonstration purposes only');
