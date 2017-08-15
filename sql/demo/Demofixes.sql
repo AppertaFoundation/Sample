@@ -14,3 +14,6 @@ INSERT INTO `address` (`address1`, `city`, `postcode`, `county`, `country_id`, `
 INSERT INTO `address` (`address1`, `city`, `postcode`, `county`, `country_id`, `contact_id`) VALUES ('24 Peticoat Lane', 'London', 'EC2 1QQ', 'London', '1', '9498');
 INSERT INTO `address` (`address1`, `city`, `postcode`, `county`, `country_id`, `contact_id`) VALUES ('1 The street', 'Townsville', 'TW1 1NN', 'Essex', '1', '9499');
 INSERT INTO `address` (`address1`, `city`, `country_id`, `contact_id`) VALUES ('The North Pole', 'Lapland', '76', '8095');
+
+-- fix disable_theatre_diary (work-around chnaged migration - not needed for new installs)
+INSERT INTO `openeyes`.`setting_installation` (`key`, `value`) VALUES ('disable_theatre_diary', 'on');
