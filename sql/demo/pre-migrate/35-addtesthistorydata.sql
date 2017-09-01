@@ -28,6 +28,7 @@ INSERT INTO `archive_patient_risk_assignment` (`patient_id`, `risk_id`, `comment
 INSERT INTO `archive_patient_risk_assignment` (`patient_id`, `risk_id`, `comments`) VALUES ('1990875', '2', 'Test 2');
 INSERT INTO `archive_patient_risk_assignment` (`patient_id`, `risk_id`, `comments`) VALUES ('1990875', '3', 'Test 3');
 INSERT INTO `archive_patient_risk_assignment` (`patient_id`, `risk_id`, `comments`, `other`) VALUES ('1990875', '5', 'Test 4', 'Undergoing Clinical Trials');
+INSERT INTO `archive_patient_risk_assignment` (`patient_id`, `risk_id`, `comments`) VALUES ('1990875', '16', 'Warfarin');
 
 -- Family History
 INSERT INTO `archive_family_history` (`patient_id`, `relative_id`, `side_id`, `condition_id`, `comments`) VALUES ('1990875', '1', '1', '1', 'Test Comment');
