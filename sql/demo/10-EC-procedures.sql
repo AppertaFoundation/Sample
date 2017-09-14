@@ -5,8 +5,6 @@ INSERT INTO proc (term, snomed_code, snomed_term) VALUES ('Vitreous Tap',1987500
 INSERT INTO subspecialty_subsection (subspecialty_id, name) VALUES (1, 'Rotary Ward / Minor Ops');
 SET @rotary = LAST_INSERT_ID();
 
-SELECT @rotary;
-
 INSERT INTO subspecialty_subsection (subspecialty_id, name) VALUES (1, 'Theatre');
 SET @theatre=LAST_INSERT_ID();
 
