@@ -4,3 +4,4 @@
 * and can be removed from this file
 *******/
 UPDATE element_type set name = 'Previous Ophthalmic History' where class_name = 'OEModule\\OphCiExamination\\models\\PastSurgery';
+UPDATE subspecialty set ref_spec = 'EC' WHERE ref_spec = 'AE';
