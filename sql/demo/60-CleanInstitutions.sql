@@ -1,9 +1,9 @@
 use openeyes;
 
-DELETE i FROM openeyes.institution i
-LEFT JOIN openeyes.contact_location l ON l.institution_id = i.id
-WHERE l.id IS NULL AND i.id > 1;
-
+DELETE i FROM institution i
+LEFT JOIN contact_location l ON l.institution_id = i.id
+LEFT JOIN site s on s.institution_id = i.id
+WHERE l.id IS NULL AND s.id IS NULL AND i.id > 1;
 
 UPDATE `institution` SET `name`='The Monachs Trust' WHERE `id`='1';
 UPDATE `institution` SET `name`='Jacobson Health Institute', `remote_id`='DEM2' WHERE `id`='83';
