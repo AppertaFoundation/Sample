@@ -3,3 +3,6 @@ UPDATE `openeyes`.`setting_metadata` SET `name`='Disable copy for notes in corre
 
 delete from ophtroperationbooking_operation_erod_rule_item;
 delete from ophtroperationbooking_operation_erod_rule;
+
+-- fix issue with emergency diary, which is looking for AE
+UPDATE `openeyes`.`subspecialty` SET `ref_spec`='AE' WHERE `id`='1';
