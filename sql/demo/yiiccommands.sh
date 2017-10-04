@@ -3,10 +3,10 @@ dir=$PWD
 
 cd /var/www/openeyes/protected
 
-echo "Generating Unique Codes..."
-./yiic generateuniquecode
+echo "  - Generating Unique Codes..."
+php ./yiic generateuniquecode
 
-# echo "Generating Operation Booking Sessions"
-# ./yiic generatesessions
+echo "  - Generating Operation Booking Sessions"
+php ./yiic generatesessions
 
 cd "$dir"
