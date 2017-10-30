@@ -59,8 +59,11 @@ Insert INTO openeyes.worklist_patient (worklist_id, patient_id) SELECT 3, id fro
 /* Add Empty patients */
 Insert INTO openeyes.worklist_patient (worklist_id, patient_id) SELECT 4, id from patient p where p.hos_num
 	in (
-    '1008006',
-    '1008007'
+    '0000001',
+    '0000002',
+	'0000003',
+	'0000004',
+	'0000005'
     );
 
 /* Add VR patients */
