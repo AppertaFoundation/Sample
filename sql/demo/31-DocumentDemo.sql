@@ -3,8 +3,8 @@
 */
 INSERT INTO `episode` (`patient_id`,`firm_id`,`start_date`,`end_date`,`last_modified_user_id`,`last_modified_date`,`created_user_id`,`created_date`,`episode_status_id`,`legacy`,`deleted`,`eye_id`,`disorder_id`,`support_services`,`change_tracker`) VALUES (19061,12,'2017-07-25 16:39:57',NULL,1,'2017-07-25 16:39:57',1,'2017-07-25 16:39:57',1,0,0,NULL,NULL,0,NULL);
 SET @ep1=LAST_INSERT_ID();
-INSERT INTO `episode` (`patient_id`,`firm_id`,`start_date`,`end_date`,`last_modified_user_id`,`last_modified_date`,`created_user_id`,`created_date`,`episode_status_id`,`legacy`,`deleted`,`eye_id`,`disorder_id`,`support_services`,`change_tracker`) VALUES (19573,5,'2017-07-25 16:42:10',NULL,1,'2017-07-25 16:42:10',1,'2017-07-25 16:42:10',1,0,0,NULL,NULL,0,NULL);
-SET @ep2=LAST_INSERT_ID();
+--INSERT INTO `episode` (`patient_id`,`firm_id`,`start_date`,`end_date`,`last_modified_user_id`,`last_modified_date`,`created_user_id`,`created_date`,`episode_status_id`,`legacy`,`deleted`,`eye_id`,`disorder_id`,`support_services`,`change_tracker`) VALUES (19573,5,'2017-07-25 16:42:10',NULL,1,'2017-07-25 16:42:10',1,'2017-07-25 16:42:10',1,0,0,NULL,NULL,0,NULL);
+SET @ep2=(SELECT id FROM episode WHERE patient_id = 19573 AND firm_id = 5);
 INSERT INTO `episode` (`patient_id`,`firm_id`,`start_date`,`end_date`,`last_modified_user_id`,`last_modified_date`,`created_user_id`,`created_date`,`episode_status_id`,`legacy`,`deleted`,`eye_id`,`disorder_id`,`support_services`,`change_tracker`) VALUES (19372,5,'2017-07-25 16:45:42',NULL,1,'2017-07-25 16:45:42',1,'2017-07-25 16:45:42',1,0,0,NULL,NULL,0,NULL);
 SET @ep3=LAST_INSERT_ID();
 INSERT INTO `episode` (`patient_id`,`firm_id`,`start_date`,`end_date`,`last_modified_user_id`,`last_modified_date`,`created_user_id`,`created_date`,`episode_status_id`,`legacy`,`deleted`,`eye_id`,`disorder_id`,`support_services`,`change_tracker`) VALUES (19038,8,'2017-07-25 16:47:15',NULL,1,'2017-07-25 16:47:15',1,'2017-07-25 16:47:15',1,0,0,NULL,NULL,0,NULL);
