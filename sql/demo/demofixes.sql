@@ -1,6 +1,6 @@
 use openeyes;
-DELETE FROM ophtroperationbooking_waiting_list_contact_rule;
-DELETE FROM `ophcocorrespondence_firm_site_secretary`;
+TRUNCATE TABLE ophtroperationbooking_waiting_list_contact_rule;
+TRUNCATE TABLE `ophcocorrespondence_firm_site_secretary`;
 
 TRUNCATE TABLE ophcotherapya_email_recipient;
 INSERT INTO ophcotherapya_email_recipient (id, site_id, recipient_name, recipient_email, type_id, display_order)
