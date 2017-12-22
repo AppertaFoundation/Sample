@@ -10,6 +10,11 @@ VALUES (2, 1, 'AMD Group', 'amdgroup@example.openeyes.org', 2, 2);
 
 UPDATE firm SET consultant_id = NULL WHERE `name` = 'Cataract Service';
 UPDATE firm SET pas_code = NULL, `name` = 'Medical Retinal Service', consultant_id = NULL, can_own_an_episode = 1, runtime_selectable = 0 WHERE id = 1;
+UPDATE episode SET firm_id = 1 WHERE firm_id = 9;
+UPDATE `ophtroperationbooking_operation_sequence` SET firm_id = 1 WHERE firm_id = 9;
+UPDATE `ophtroperationbooking_operation_session` SET firm_id = 1 WHERE firm_id = 9;
+UPDATE `et_ophcotherapya_mrservicein` SET consultant_id = 1 WHERE consultant_id = 9;
+
 DELETE FROM firm where id = 9;
 
 TRUNCATE TABLE user_session;
