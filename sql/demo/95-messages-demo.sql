@@ -1,6 +1,6 @@
 
 
-INSERT INTO `event` (`episode_id`,`created_user_id`,`event_type_id`,`last_modified_user_id`,`last_modified_date`,`created_date`,`event_date`,`info`,`deleted`,`delete_reason`,`delete_pending`,`is_automated`,`automated_source`,`parent_id`,`sub_type`) VALUES (70,1,38,1,'2016-07-26 16:13:46','2016-07-26 16:13:46','2016-05-09 00:00:00','unread',0,NULL,0,NULL,NULL,NULL,NULL);
+INSERT INTO `event` (`episode_id`,`created_user_id`,`event_type_id`,`last_modified_user_id`,`last_modified_date`,`created_date`,`event_date`,`info`,`deleted`,`delete_reason`,`delete_pending`,`is_automated`,`automated_source`,`parent_id`,`sub_type`) VALUES (70,1,38,1,'2016-07-26 16:13:46','2016-07-26 16:13:46','2016-07-26 00:00:00','unread',0,NULL,0,NULL,NULL,NULL,NULL);
 SET @ev1=LAST_INSERT_ID();
 
 
