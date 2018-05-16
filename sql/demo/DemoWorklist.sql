@@ -56,7 +56,7 @@ Insert INTO openeyes.worklist_patient (worklist_id, patient_id) SELECT @mr, id f
 	-- '1796962',
 	'1835099',
 	'1840181',
-	'1869032',
+	'1869032'
 	-- '1897143'
     );
 
