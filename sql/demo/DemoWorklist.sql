@@ -65,7 +65,8 @@ Insert INTO openeyes.worklist_patient (worklist_id, patient_id) SELECT @gc, id f
 	in (
     '1009797',
 	'0755231',
-	'1009068'
+	'1009068',
+	'1007919'
     );
 
 /* Add Empty patients */
@@ -102,6 +103,7 @@ UPDATE `worklist_patient` SET `when`='0000-00-00 09:45:00' WHERE `patient_id`='1
 UPDATE `worklist_patient` SET `when`='0000-00-00 10:15:10' WHERE `patient_id`='17975';
 UPDATE `worklist_patient` SET `when`='0000-00-00 10:30:10' WHERE `patient_id`='2126199';
 -- Glaucoma
-UPDATE `worklist_patient` SET `when`='0000-00-00 09:00:00' WHERE `patient_id`='19766';
+UPDATE `worklist_patient` SET `when`='0000-00-00 09:00:00' WHERE `patient_id`='17891';
+UPDATE `worklist_patient` SET `when`='0000-00-00 09:20:00' WHERE `patient_id`='19766';
 UPDATE `worklist_patient` SET `when`='0000-00-00 09:15:00' WHERE `patient_id`='19038';
 UPDATE `worklist_patient` SET `when`='0000-00-00 09:30:00' WHERE `patient_id`='1961284';
