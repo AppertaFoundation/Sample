@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-## NOTE: This script assumes it is in protected/scripts. If you move it then relative paths will not work!
+## NOTE: This script assumes it is in protected/modules/sample/sql/demo. If you move it then relative paths will not work!
 
 # Find fuill folder path where this script is located, then find root folder
 SOURCE="${BASH_SOURCE[0]}"
@@ -11,7 +11,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 # Determine root folder for site - all relative paths will be built from here
 SCRIPTDIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-WROOT="$( cd -P "$SCRIPTDIR/../../" && pwd )"
+WROOT="$( cd -P "$SCRIPTDIR/../../../../../" && pwd )"
 MODULEROOT=$WROOT/protected/modules
 
 echo "  - Generating Unique Codes..."
