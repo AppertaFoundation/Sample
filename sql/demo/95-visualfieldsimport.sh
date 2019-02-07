@@ -1,20 +1,30 @@
-#!/bin/bash
-dir=$PWD
-cd /var/www/openeyes/protected
+#!/bin/bash -l
 
-rm -rf runtime/fields
+## NOTE: This script assumes it is in protected/modules/sample/sql/demo. If you move it then relative paths will not work!
 
-mkdir runtime/fields
-mkdir runtime/fields/legacy
-mkdir runtime/fields/out
-mkdir runtime/fields/err
-mkdir runtime/fields/dups
+# Find fuill folder path where this script is located, then find root folder
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+# Determine root folder for site - all relative paths will be built from here
+SCRIPTDIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+WROOT="$( cd -P "$SCRIPTDIR/../../../../../" && pwd )"
+MODULEROOT=$WROOT/protected/modules
 
-cp modules/OphInVisualfields/tests/fields/legacy/* runtime/fields/legacy/
+rm -rf $WROOT/protected/runtime/fields
 
-php ./yiic importlegacyvf import --importDir=runtime/fields/legacy --archiveDir=runtime/fields/out --errorDir=runtime/fields/err --dupDir=runtime/fields/dups
+mkdir $WROOT/protected/runtime/fields
+mkdir $WROOT/protected/runtime/fields/legacy
+mkdir $WROOT/protected/runtime/fields/out
+mkdir $WROOT/protected/runtime/fields/err
+mkdir $WROOT/protected/runtime/fields/dups
 
-chown -R www-data:www-data files
-chmod -R 774 files
+cp $MODULEROOT/OphInVisualfields/tests/fields/legacy/* $WROOT/protected/runtime/fields/legacy/
 
-cd "$dir"
+php $WROOT/protected/yiic importlegacyvf import --importDir=$WROOT/protected/runtime/fields/legacy --archiveDir=$WROOT/protected/runtime/fields/out --errorDir=$WROOT/protected/runtime/fields/err --dupDir=$WROOT/protected/runtime/fields/dups
+
+chown -R www-data:www-data $WROOT/protected/fields
+chmod -R 774 $WROOT/protected/fields
