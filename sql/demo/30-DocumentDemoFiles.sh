@@ -17,4 +17,4 @@ MODULEROOT=$WROOT/protected/modules
 cp -R $MODULEROOT/sample/sql/demo/files/* $WROOT/protected/files/
 
 #chown -R www-data:www-data files
-chmod -R 774 files
+sudo chmod -R 774 $WROOT/protected/files/
