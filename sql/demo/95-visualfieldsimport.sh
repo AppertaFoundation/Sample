@@ -26,5 +26,5 @@ cp $MODULEROOT/OphInVisualfields/tests/fields/legacy/* $WROOT/protected/runtime/
 
 php $WROOT/protected/yiic importlegacyvf import --importDir=$WROOT/protected/runtime/fields/legacy --archiveDir=$WROOT/protected/runtime/fields/out --errorDir=$WROOT/protected/runtime/fields/err --dupDir=$WROOT/protected/runtime/fields/dups
 
-chown -R www-data:www-data $WROOT/protected/fields
-chmod -R 774 $WROOT/protected/fields
+chown -R www-data:www-data $WROOT/protected/runtime/fields
+chmod -R 774 $WROOT/protected/runtime/fields
