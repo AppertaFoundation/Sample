@@ -15,6 +15,7 @@ WROOT="$( cd -P "$SCRIPTDIR/../../../../../" && pwd )"
 MODULEROOT=$WROOT/protected/modules
 
 cp -R $MODULEROOT/sample/sql/demo/files/* $WROOT/protected/files/
+sudo chmod -R g+rws $WROOT/protected/runtime
 
 #chown -R www-data:www-data files
 sudo chmod -R 774 $WROOT/protected/files/
